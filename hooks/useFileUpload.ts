@@ -27,7 +27,6 @@ export function useFileUpload() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
         },
         body: JSON.stringify({
           filename: file.name,
@@ -52,7 +51,7 @@ export function useFileUpload() {
 
       const { presignedUrl, key } = await presignedResponse.json();
 
-      // 2. Upload file to S3
+      // 2. Upload file to S3 using XMLHttpRequest for progress tracking
       await new Promise<void>((resolve, reject) => {
         const xhr = new XMLHttpRequest();
 
